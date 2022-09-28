@@ -5,22 +5,22 @@ const products = {
         img: 'assets/img/products/Salchicha-cocida-Finas-Hierbas-630 PARRILLA.png'
     },
     product2: {
-        price: 3,
+        price: 4,
         name: 'SALCHICHA COCIDA PARA DESAYUNO',
         img: 'assets/img/products/3_Salchicha-cocida-finas-hierbas-desayuno.png'
     },
     product3: {
-        price: 3,
+        price: 4,
         name: 'SALCHICHA COCIDA PICANTE JALAPEÑA',
         img: 'assets/img/products/salchicha-picante-jalapena-630 PARRILA.png'
     },
     product4: {
-        price: 3,
+        price: 6,
         name: 'JAMÓN COCIDO SUPERIOR',
         img: 'assets/img/products/Jamon-Cocido-Superior.jpg'
     },
     product5: {
-        price: 3,
+        price: 5,
         name: 'JAMÓN AHUMADO VISKING',
         img: 'assets/img/products/Jamon-Ahumado-Visking.jpg'
     },
@@ -30,27 +30,27 @@ const products = {
         img: 'assets/img/products/la_montserratina_21012013180908.jpg'
     },
     product7: {
-        price: 3,
+        price: 7,
         name: 'CHORIZO VELA',
         img: 'assets/img/products/CHORIZO-TIPO-VELA PRODUCTO.jpg'
     },
     product8: {
-        price: 3,
+        price: 2,
         name: 'SALCHICHON TIPO VICH',
         img: 'assets/img/products/Salchichon-Tipo-Vich PRODUCTO.jpg'
     },
     product9: {
-        price: 3,
+        price: 5,
         name: 'SALCHICHON TIPO FUET',
         img: 'assets/img/products/SalchichOn-tipo-fuet PRODUCTO.jpg'
     },
     product10: {
-        price: 3,
+        price: 7,
         name: 'JAMÓN PLANCHADO',
         img: 'assets/img/products/NOOficial-JAMON-PLANCHADO.jpg'
     },
     product11: {
-        price: 3,
+        price: 8,
         name: 'JAMÓN TIPO TENDER',
         img: 'assets/img/products/Jamon-Ahumado-Tipo-Tender PRODUCTO.jpg'
     },
