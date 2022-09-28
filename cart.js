@@ -1,34 +1,60 @@
 const products = {
     product1: {
         price: 3,
-        name: 'product 1',
-        img: ''
+        name: 'SALCHICHA COCIDA CON FINAS HIERBAS',
+        img: 'assets/img/products/Salchicha-cocida-Finas-Hierbas-630 PARRILLA.png'
     },
     product2: {
-        price: 5,
-        name: 'product 2',
-        img: ''
+        price: 3,
+        name: 'SALCHICHA COCIDA PARA DESAYUNO',
+        img: 'assets/img/products/3_Salchicha-cocida-finas-hierbas-desayuno.png'
     },
     product3: {
-        price: 7,
-        name: 'product 3',
-        img: ''
+        price: 3,
+        name: 'SALCHICHA COCIDA PICANTE JALAPEÑA',
+        img: 'assets/img/products/salchicha-picante-jalapena-630 PARRILA.png'
     },
     product4: {
-        price: 6,
-        name: 'product 4',
-        img: ''
+        price: 3,
+        name: 'JAMÓN COCIDO SUPERIOR',
+        img: 'assets/img/products/Jamon-Cocido-Superior.jpg'
     },
     product5: {
-        price: 4,
-        name: 'product 5',
-        img: ''
+        price: 3,
+        name: 'JAMÓN AHUMADO VISKING',
+        img: 'assets/img/products/Jamon-Ahumado-Visking.jpg'
     },
     product6: {
-        price: 8,
-        name: 'product 6',
-        img: ''
+        price: 3,
+        name: 'PECHUGA DE PAVO COCIDA',
+        img: 'assets/img/products/la_montserratina_21012013180908.jpg'
     },
+    product7: {
+        price: 3,
+        name: 'CHORIZO VELA',
+        img: 'assets/img/products/CHORIZO-TIPO-VELA PRODUCTO.jpg'
+    },
+    product8: {
+        price: 3,
+        name: 'SALCHICHON TIPO VICH',
+        img: 'assets/img/products/Salchichon-Tipo-Vich PRODUCTO.jpg'
+    },
+    product9: {
+        price: 3,
+        name: 'SALCHICHON TIPO FUET',
+        img: 'assets/img/products/SalchichOn-tipo-fuet PRODUCTO.jpg'
+    },
+    product10: {
+        price: 3,
+        name: 'JAMÓN PLANCHADO',
+        img: 'assets/img/products/NOOficial-JAMON-PLANCHADO.jpg'
+    },
+    product11: {
+        price: 3,
+        name: 'JAMÓN TIPO TENDER',
+        img: 'assets/img/products/Jamon-Ahumado-Tipo-Tender PRODUCTO.jpg'
+    },
+
 }
 
 let currentCart = {
@@ -38,6 +64,11 @@ let currentCart = {
     product4: 0,
     product5: 0,
     product6: 0,
+    product7: 0,
+    product8: 0,
+    product9: 0,
+    product10: 0,
+    product11: 0,
 }
 let totatDiaplayer = document.getElementById('total');
 
@@ -69,6 +100,11 @@ const productsDOM = {
     product4: document.getElementById('product-4-quantity'),
     product5: document.getElementById('product-5-quantity'),
     product6: document.getElementById('product-6-quantity'),
+    product7: document.getElementById('product-7-quantity'),
+    product8: document.getElementById('product-8-quantity'),
+    product9: document.getElementById('product-9-quantity'),
+    product10: document.getElementById('product-10-quantity'),
+    product11: document.getElementById('product-11-quantity'),
 }
 
 
@@ -82,6 +118,7 @@ Object.entries(currentCart).forEach((element, index) => {
 
 function addToCart(product) {
     totalInCart += products[product].price;
+    console.log(currentCart);
 
     productsDOM[product].innerText = currentCart[product] + 1;
 
@@ -106,83 +143,21 @@ function gotToPay() {
 
 
 function generateCart() {
+    console.log(currentCart)
+    for (let i=0; i < Object.keys(currentCart).length; i++) {
+        if (currentCart[`product${i + 1}`] > 0) {
+            cartBody.innerHTML += `
+            <tr class="table-body-row">
+                <td class="product-image"><img src="${products[`product${i + 1}`].img}" alt=""></td>
+                <td class="product-name">${products[`product${i + 1}`].name}</td>
+                <td class="product-price">${products[`product${i + 1}`].price} $</td>
+                <td class="product-quantity">${currentCart[`product${i + 1}`]}</td>
+                <td class="product-total">${currentCart[`product${i + 1}`] * products[`product${i + 1}`].price} $</td>
+            </tr>
+            `
+            total += currentCart[`product${i + 1}`] * products[`product${i + 1}`].price;
 
-    if (currentCart['product1'] > 0) {
-        cartBody.innerHTML += `
-        <tr class="table-body-row">
-            <td class="product-image"><img src="assets/img/products/product-img-1.jpg" alt=""></td>
-            <td class="product-name">${products.product1.name}</td>
-            <td class="product-price">${products.product1.price}</td>
-            <td class="product-quantity">${currentCart.product1}</td>
-            <td class="product-total">${currentCart.product1 * products.product1.price}</td>
-        </tr>
-        `
-        total += currentCart.product1 * products.product1.price;
-    }
-
-    if (currentCart['product2'] > 0) {
-        cartBody.innerHTML += `
-        <tr class="table-body-row">
-            <td class="product-image"><img src="assets/img/products/product-img-1.jpg" alt=""></td>
-            <td class="product-name">${products.product2.name}</td>
-            <td class="product-price">${products.product2.price}</td>
-            <td class="product-quantity">${currentCart.product2}</td>
-            <td class="product-total">${currentCart.product2 * products.product2.price}</td>
-        </tr>
-        `
-        total += currentCart.product2 * products.product2.price;
-    }
-
-    if (currentCart['product3'] > 0) {
-        cartBody.innerHTML += `
-        <tr class="table-body-row">
-            <td class="product-image"><img src="assets/img/products/product-img-1.jpg" alt=""></td>
-            <td class="product-name">${products.product3.name}</td>
-            <td class="product-price">${products.product3.price}</td>
-            <td class="product-quantity">${currentCart.product3}</td>
-            <td class="product-total">${currentCart.product3 * products.product3.price}</td>
-        </tr>
-        `
-        total += currentCart.product3 * products.product3.price;
-    }
-
-    if (currentCart['product4'] > 0) {
-        cartBody.innerHTML += `
-        <tr class="table-body-row">
-            <td class="product-image"><img src="assets/img/products/product-img-1.jpg" alt=""></td>
-            <td class="product-name">${products.product4.name}</td>
-            <td class="product-price">${products.product4.price}</td>
-            <td class="product-quantity">${currentCart.product4}</td>
-            <td class="product-total">${currentCart.product4 * products.product4.price}</td>
-        </tr>
-        `
-        total += currentCart.product4 * products.product4.price;
-    }
-
-    if (currentCart['product5'] > 0) {
-        cartBody.innerHTML += `
-        <tr class="table-body-row">
-            <td class="product-image"><img src="assets/img/products/product-img-1.jpg" alt=""></td>
-            <td class="product-name">${products.product5.name}</td>
-            <td class="product-price">${products.product5.price}</td>
-            <td class="product-quantity">${currentCart.product5}</td>
-            <td class="product-total">${currentCart.product5 * products.product5.price}</td>
-        </tr>
-        `
-        total += currentCart.product5 * products.product5.price;
-    }
-
-    if (currentCart['product6'] > 0) {
-        cartBody.innerHTML += `
-        <tr class="table-body-row">
-            <td class="product-image"><img src="assets/img/products/product-img-1.jpg" alt=""></td>
-            <td class="product-name">${products.product6.name}</td>
-            <td class="product-price">${products.product6.price}</td>
-            <td class="product-quantity">${currentCart.product6}</td>
-            <td class="product-total">${currentCart.product6 * products.product6.price}</td>
-        </tr>
-        `
-        total += currentCart.product6 * products.product6.price;
+        }
     }
 
     document.getElementById('total-in-products').innerText = `${total}$`;
@@ -197,72 +172,20 @@ function addFinalProducts() {
     let totalToPay = 0;
     let totalProducts = 0;
 
-    if (currentCart['product1'] > 0) {
-        orderBody.innerHTML += `
-        <tr>
-            <td class="product-quantity">${products.product1.name}</td>
-            <td class="product-quantity">${currentCart['product1']}</td>
-            <td class="product-total">${products.product1.price}$</td>
-        </tr>
-        `
-        totalToPay += currentCart.product1 * products.product1.price;
-        totalProducts += currentCart.product1;
-    }
-    if (currentCart['product2'] > 0) {
-        orderBody.innerHTML += `
-        <tr>
-            <td class="product-quantity">${products.product2.name}</td>
-            <td class="product-quantity">${currentCart['product2']}</td>
-            <td class="product-total">${products.product2.price}$</td>
-        </tr>
-        `
-        totalToPay += currentCart.product2 * products.product2.price;
-        totalProducts += currentCart.product2;
-    }
-    if (currentCart['product3'] > 0) {
-        orderBody.innerHTML += `
-        <tr>
-            <td class="product-quantity">${products.product3.name}</td>
-            <td class="product-quantity">${currentCart['product3']}</td>
-            <td class="product-total">${products.product3.price}$</td>
-        </tr>
-        `
-        totalToPay += currentCart.product3 * products.product3.price;
-        totalProducts += currentCart.product3;
-    }
-    if (currentCart['product4'] > 0) {
-        orderBody.innerHTML += `
-        <tr>
-            <td class="product-quantity">${products.product4.name}</td>
-            <td class="product-quantity">${currentCart['product4']}</td>
-            <td class="product-total">${products.product4.price}$</td>
-        </tr>
-        `
-        totalToPay += currentCart.product4 * products.product4.price;
-        totalProducts += currentCart.product4;
-    }
-    // do the same as above until product6
-    if (currentCart['product5'] > 0) {
-        orderBody.innerHTML += `
-        <tr>
-            <td class="product-quantity">${products.product5.name}</td>
-            <td class="product-quantity">${currentCart['product5']}</td>
-            <td class="product-total">${products.product5.price}$</td>
-        </tr>
-        `
-        totalToPay += currentCart.product5 * products.product5.price;
-        totalProducts += currentCart.product5;
-    }
-    if (currentCart['product6'] > 0) {
-        orderBody.innerHTML += `
-        <tr>
-            <td class="product-quantity">${products.product6.name}</td>
-            <td class="product-quantity">${currentCart['product6']}</td>
-            <td class="product-total">${products.product6.price}$</td>
-        </tr>
-        `
-        totalToPay += currentCart.product6 * products.product6.price;
-        totalProducts += currentCart.product6;
+    for (let i=0; i < Object.keys(currentCart).length; i++) {
+        if (currentCart[`product${i + 1}`] > 0) {
+            console.log(i)
+            orderBody.innerHTML += `
+            <tr class="table-body-row">
+                <td class="product-quantity">${products[`product${i + 1}`].name} $</td>
+                <td class="product-quantity">${currentCart[`product${i + 1}`]}</td>
+                <td class="product-total">${products[`product${i + 1}`].price} $</td>
+            </tr>
+            `
+            totalToPay += currentCart[`product${i + 1}`] * products[`product${i + 1}`].price;
+            totalProducts += currentCart[`product${i + 1}`];
+
+        }
     }
 
     orderBody.innerHTML += `
