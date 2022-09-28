@@ -100,7 +100,7 @@ function gotToPay() {
     // // Retrieve the object from storage
     
 
-    document.location.replace('/cart.html');
+    document.location.replace('cart.html');
 
 }
 
