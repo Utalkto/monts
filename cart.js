@@ -32,13 +32,34 @@ const products = {
 }
 
 let currentCart = {
-    product1: 1,
-    product2: 1,
-    product3: 1,
-    product4: 1,
-    product5: 1,
-    product6: 1,
+    product1: 0,
+    product2: 0,
+    product3: 0,
+    product4: 0,
+    product5: 0,
+    product6: 0,
 }
+let totatDiaplayer = document.getElementById('total');
+
+let retrievedObject = localStorage.getItem('currentCart');
+console.log(retrievedObject);
+
+let totalInCart = 0;
+
+
+if (retrievedObject){
+    currentCart = JSON.parse(retrievedObject);
+
+    // get the total
+    Object.entries(currentCart).forEach((element, index) => {
+        if (element[1] > 0) {
+            totalInCart += products[`product${index + 1}`].price;
+        }
+    });
+
+    try{totatDiaplayer.innerText = totalInCart + ' $';} catch{}
+}
+
 
 
 const productsDOM = { 
@@ -51,12 +72,15 @@ const productsDOM = {
 }
 
 
-let totatDiaplayer = document.getElementById('total');
+Object.entries(currentCart).forEach((element, index) => {
+    try {
+        productsDOM[`product${index + 1}`].innerText = element[1];
+    }
+    catch {console.log('there')};
+});
 
-let totalInCart = 0;
 
 function addToCart(product) {
-    console.log('calling');
     totalInCart += products[product].price;
 
     productsDOM[product].innerText = currentCart[product] + 1;
@@ -66,7 +90,20 @@ function addToCart(product) {
 }
 
 let cartBody = document.getElementById('cart-body');
-let total = 5;
+let total = 0;
+
+
+function gotToPay() {
+    // // Put the object into storage
+    localStorage.setItem('currentCart', JSON.stringify(currentCart));
+
+    // // Retrieve the object from storage
+    
+
+    document.location.replace('/cart.html');
+
+}
+
 
 function generateCart() {
 
@@ -148,9 +185,94 @@ function generateCart() {
         total += currentCart.product6 * products.product6.price;
     }
 
-    document.getElementById('total-in-products').innerText = `${total - 5}$`;
+    document.getElementById('total-in-products').innerText = `${total}$`;
     document.getElementById('total-to-pay').innerText = `${total}$`;
    
 }
 
-generateCart();
+
+function addFinalProducts() {
+
+    let orderBody = document.getElementById('order-details-body');
+    let totalToPay = 0;
+    let totalProducts = 0;
+
+    if (currentCart['product1'] > 0) {
+        orderBody.innerHTML += `
+        <tr>
+            <td class="product-quantity">${products.product1.name}</td>
+            <td class="product-quantity">${currentCart['product1']}</td>
+            <td class="product-total">${products.product1.price}$</td>
+        </tr>
+        `
+        totalToPay += currentCart.product1 * products.product1.price;
+        totalProducts += currentCart.product1;
+    }
+    if (currentCart['product2'] > 0) {
+        orderBody.innerHTML += `
+        <tr>
+            <td class="product-quantity">${products.product2.name}</td>
+            <td class="product-quantity">${currentCart['product2']}</td>
+            <td class="product-total">${products.product2.price}$</td>
+        </tr>
+        `
+        totalToPay += currentCart.product2 * products.product2.price;
+        totalProducts += currentCart.product2;
+    }
+    if (currentCart['product3'] > 0) {
+        orderBody.innerHTML += `
+        <tr>
+            <td class="product-quantity">${products.product3.name}</td>
+            <td class="product-quantity">${currentCart['product3']}</td>
+            <td class="product-total">${products.product3.price}$</td>
+        </tr>
+        `
+        totalToPay += currentCart.product3 * products.product3.price;
+        totalProducts += currentCart.product3;
+    }
+    if (currentCart['product4'] > 0) {
+        orderBody.innerHTML += `
+        <tr>
+            <td class="product-quantity">${products.product4.name}</td>
+            <td class="product-quantity">${currentCart['product4']}</td>
+            <td class="product-total">${products.product4.price}$</td>
+        </tr>
+        `
+        totalToPay += currentCart.product4 * products.product4.price;
+        totalProducts += currentCart.product4;
+    }
+    // do the same as above until product6
+    if (currentCart['product5'] > 0) {
+        orderBody.innerHTML += `
+        <tr>
+            <td class="product-quantity">${products.product5.name}</td>
+            <td class="product-quantity">${currentCart['product5']}</td>
+            <td class="product-total">${products.product5.price}$</td>
+        </tr>
+        `
+        totalToPay += currentCart.product5 * products.product5.price;
+        totalProducts += currentCart.product5;
+    }
+    if (currentCart['product6'] > 0) {
+        orderBody.innerHTML += `
+        <tr>
+            <td class="product-quantity">${products.product6.name}</td>
+            <td class="product-quantity">${currentCart['product6']}</td>
+            <td class="product-total">${products.product6.price}$</td>
+        </tr>
+        `
+        totalToPay += currentCart.product6 * products.product6.price;
+        totalProducts += currentCart.product6;
+    }
+
+    orderBody.innerHTML += `
+    <tr>
+        <td class="product-quantity">Total</td>
+        <td class="product-total">${totalProducts}</td>
+        <td class="product-total">${totalToPay}$</td>
+    </tr>
+    `
+}
+
+try{generateCart()} catch{}
+try{addFinalProducts()} catch{}
